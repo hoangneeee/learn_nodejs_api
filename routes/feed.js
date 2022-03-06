@@ -10,8 +10,8 @@ router.get('/posts', feedController.getPosts);
 
 // POST /feed/posts
 router.post('/posts', [
-    body('title').trim().isLength({ min: 10 }),
-    body('content').trim().isLength({ min: 10 })
+    body('title').trim().isLength({ min: 5 }),
+    body('content').trim().isLength({ min: 5 })
 ], feedController.createPost);
 
 module.exports = router;
