@@ -22,12 +22,18 @@ exports.createPost = (req, res, next) => {
         error.statusCode = 442;
         throw error;
     }
+    if (!req.file) {
+        const error = new Error('No image provided');
+        error.statusCode = 442;
+        throw error;
+    }
+    const imageUrl = req.file.path.replace("\\" ,"/");
     const title = req.body.title;
     const content = req.body.content;
     // Create post in Db
     const post = new Post({
         title: title,
-        imageUrl: 'images/django.png',
+        imageUrl: imageUrl,
         content: content,
         creator: { name: 'Hoang' }
     });
